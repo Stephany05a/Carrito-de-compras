@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<input type="email" id="email" placeholder="Correo" required><br><br>
+
+<input type="password" id="password" placeholder="Contraseña" required><br><br>
+
+<button type="submit">Iniciar sesión</button>
+
+</form>
+
+<p>No tienes cuenta? <a href="registro.html">Registrarse</a></p>
+
+</body>
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+let usuario = JSON.parse(localStorage.getItem("usuario"));
+
+if(usuario && email === usuario.email && password === usuario.password){
+
+localStorage.setItem("sesion","activa");
+
+alert("Bienvenido " + usuario.nombre);
+
+window.location.href="index.html";
+
+}else{
+
+alert("Correo o contraseña incorrectos");
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
